@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { X, Stethoscope } from 'lucide-react';
+import type { User } from '@shared/types';
 import { authService } from '@shared/services/authService';
 import { funnelTrackingService } from '@shared/services/funnelTrackingService';
+import { adminSignIn } from '../lib/adminAuth';
 
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSuccess: () => void;
+  onSuccess: (user: User) => void;
 }
 
 const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSuccess }) => {
@@ -39,13 +41,14 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onSuccess }) =
     setLoading(true);
     try {
       if (isLogin) {
-        await funnelTrackingService.trackLoginAttempt(email);
-        await authService.signIn(email, password);
+        void funnelTrackingService.trackLoginAttempt(email);
+        const user = await adminSignIn(email, password);
+        void funnelTrackingService.trackLoginSuccess(email, user.id);
+        onSuccess(user);
       } else {
-        await funnelTrackingService.trackSignupAttempt(email);
-        await authService.signUp(email, password, name, clinicName);
+        setError('Admin accounts are created by CrestWard. Use Sign in if you already have access.');
+        return;
       }
-      onSuccess();
       onClose();
       setEmail(''); setPassword(''); setName(''); setClinicName('');
     } catch (err: any) {
