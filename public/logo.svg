@@ -1,0 +1,70 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="arrowGrad" x1="95" y1="415" x2="435" y2="65" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#0C1929"/>
+      <stop offset="35%"  stop-color="#0A4A6B"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+    <clipPath id="circleClip">
+      <circle cx="256" cy="256" r="212"/>
+    </clipPath>
+  </defs>
+
+  <!-- Mountain silhouette clipped inside circle -->
+  <g clip-path="url(#circleClip)">
+    <path
+      d="M 44 468
+         L 44 355
+         L 105 315
+         L 138 358
+         L 178 268
+         L 198 305
+         L 228 118
+         L 268 196
+         L 298 142
+         L 330 196
+         L 362 252
+         L 395 308
+         L 468 395
+         L 468 468 Z"
+      fill="#0C1929"
+    />
+  </g>
+
+  <!-- Circle ring — rendered over mountain so it masks the edge cleanly -->
+  <!-- Drawn as two arcs leaving a gap top-right where the arrow exits -->
+  <path
+    d="M 390 88
+       A 212 212 0 1 0 412 135"
+    stroke="#0C1929"
+    stroke-width="20"
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- Arrow body — zigzag from bottom-left rising to upper-right, exits circle -->
+  <path
+    d="M 95 415
+       L 158 300
+       L 195 340
+       L 250 185
+       L 285 245
+       L 348 148
+       L 435 62"
+    stroke="url(#arrowGrad)"
+    stroke-width="24"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+
+  <!-- Arrow head -->
+  <path
+    d="M 396 58 L 442 48 L 432 94"
+    stroke="url(#arrowGrad)"
+    stroke-width="22"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+</svg>

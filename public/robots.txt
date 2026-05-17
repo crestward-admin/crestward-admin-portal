@@ -1,0 +1,12 @@
+# robots.txt for Crestward
+User-agent: *
+Allow: /
+Disallow: /auth/
+Disallow: /api/
+Disallow: /feedback/
+Disallow: /fb/
+Disallow: /dashboard/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://crestward.in/sitemap.xml
